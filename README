@@ -1,0 +1,189 @@
+balsa
+------------------------------------------
+Balsa is an e-mail client for GNOME, highly configurable and 
+incorporating all the features you would expect in a robust 
+mail client.
+
+Runtime requirements:
+  cygwin-1.5.24-2
+  GConf2-2.16.1-1
+  ORBit2-2.14.7-1
+  compface-1.5.2-1
+  gdk-pixbuf2-2.10.12-1
+  glib2-2.12.12-1
+  gmime2-2.2.8-1
+  gnome-vfs2-2.16.3-1
+  gtk2-x11-2.10.12-1
+  gtkhtml38-3.12.3-1
+  gtksourceview-1.8.5-1
+  gtkspell-2.0.11-2
+  libbonobo2-2.16.0-1
+  libbonoboui2-2.16.0-1
+  libcairo2-1.4.6-1
+  libgetaddrinfo0-1.6.3-2
+  libgnome2-2.16.0-1
+  libgnomeui2-2.16.1-1
+  libgpgme11-1.1.4-1
+  libintl8-0.15-1
+  libopenldap2_3_0-2.3.30-1
+  libpcre0-7.1-1
+  openssl-0.9.8e-3
+  pango-1.16.4-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  cygwin-1.5.24-2
+  autoconf2.5-2.61-1
+  automake1.9-1.9.6-2
+  binutils-20060817-1
+  bison-2.3-1
+  cygport-0.2.9-1
+  flex-2.5.33-1
+  gawk-3.1.5-4
+  gcc-core-3.4.4-3
+  gnome-common-2.18.0-1
+  gnome-doc-utils-0.10.0-1
+  intltool-0.35.5-1
+  libtool1.5-1.5.23a-2
+  make-3.81-1
+  pkg-config-0.21-1
+  scrollkeeper-0.3.14-2
+  sed-4.1.5-2
+
+Canonical website:
+  http://balsa.gnome.org/
+
+Canonical download:
+  http://balsa.gnome.org/download.html
+
+-------------------------------------------
+
+Build instructions:
+  unpack balsa-2.3.16-X-src.tar.bz2
+    if you use setup to install this src package, it will be
+	 unpacked under /usr/src automatically
+  cd /usr/src
+  cygport ./balsa-2.3.16-X.cygport all
+
+This will create:
+  /usr/src/balsa-2.3.16-X-src.tar.bz2
+  /usr/src/balsa-2.3.16-X.tar.bz2
+
+-------------------------------------------
+
+Files included in the binary package:
+
+  /etc/postinstall/balsa.sh
+  /etc/preremove/balsa.sh
+  /etc/sound/events/balsa.soundlist
+  /usr/bin/balsa-ab.exe
+  /usr/bin/balsa.exe
+  /usr/lib/bonobo/servers/GNOME_Balsa.server
+  /usr/share/applications/balsa.desktop
+  /usr/share/balsa/hicolor/22x22
+  /usr/share/balsa/pixmaps/attachment.png
+  /usr/share/balsa/pixmaps/balsa-logo.png
+  /usr/share/balsa/pixmaps/balsa-top.png
+  /usr/share/balsa/pixmaps/balsa-watermark.png
+  /usr/share/balsa/pixmaps/balsa_icon.png
+  /usr/share/balsa/pixmaps/balsa_logo.png
+  /usr/share/doc/Cygwin/balsa-2.3.16.README
+  /usr/share/doc/balsa-2.3.16/AUTHORS
+  /usr/share/doc/balsa-2.3.16/COPYING
+  /usr/share/doc/balsa-2.3.16/ChangeLog
+  /usr/share/doc/balsa-2.3.16/HACKING
+  /usr/share/doc/balsa-2.3.16/INSTALL
+  /usr/share/doc/balsa-2.3.16/NEWS
+  /usr/share/doc/balsa-2.3.16/README
+  /usr/share/doc/balsa-2.3.16/TODO
+  /usr/share/gnome/help/balsa/C/balsa.xml
+  /usr/share/gnome/help/balsa/C/fdl-appendix.xml
+  /usr/share/gnome/help/balsa/C/figures/address-book-ldap.png
+  /usr/share/gnome/help/balsa/C/figures/address-book-modify.png
+  /usr/share/gnome/help/balsa/C/figures/address-book-start.png
+  /usr/share/gnome/help/balsa/C/figures/address-book-vcard.png
+  /usr/share/gnome/help/balsa/C/figures/address-book.png
+  /usr/share/gnome/help/balsa/C/figures/balsa_logo.png
+  /usr/share/gnome/help/balsa/C/figures/druid-start.png
+  /usr/share/gnome/help/balsa/C/figures/example-alias.png
+  /usr/share/gnome/help/balsa/C/figures/figuresdobaaddress-book-modify.png
+  /usr/share/gnome/help/balsa/C/figures/main-window-toolbar.png
+  /usr/share/gnome/help/balsa/C/figures/main-window.png
+  /usr/share/gnome/help/balsa/C/figures/message-window.png
+  /usr/share/gnome/help/balsa/C/figures/msg-part-select.png
+  /usr/share/gnome/help/balsa/C/figures/newmsg-window-attachments.png
+  /usr/share/gnome/help/balsa/C/figures/newmsg-window-toolbar.png
+  /usr/share/gnome/help/balsa/C/figures/newmsg-window.png
+  /usr/share/gnome/help/balsa/C/figures/preferences-window.png
+  /usr/share/gnome/help/balsa/C/figures/spell-check.png
+  /usr/share/idl/Balsa.idl
+  /usr/share/locale/am/LC_MESSAGES/balsa.mo
+  /usr/share/locale/ar/LC_MESSAGES/balsa.mo
+  /usr/share/locale/az/LC_MESSAGES/balsa.mo
+  /usr/share/locale/bg/LC_MESSAGES/balsa.mo
+  /usr/share/locale/ca/LC_MESSAGES/balsa.mo
+  /usr/share/locale/cs/LC_MESSAGES/balsa.mo
+  /usr/share/locale/da/LC_MESSAGES/balsa.mo
+  /usr/share/locale/de/LC_MESSAGES/balsa.mo
+  /usr/share/locale/dz/LC_MESSAGES/balsa.mo
+  /usr/share/locale/el/LC_MESSAGES/balsa.mo
+  /usr/share/locale/en_CA/LC_MESSAGES/balsa.mo
+  /usr/share/locale/en_GB/LC_MESSAGES/balsa.mo
+  /usr/share/locale/es/LC_MESSAGES/balsa.mo
+  /usr/share/locale/et/LC_MESSAGES/balsa.mo
+  /usr/share/locale/fi/LC_MESSAGES/balsa.mo
+  /usr/share/locale/fr/LC_MESSAGES/balsa.mo
+  /usr/share/locale/ga/LC_MESSAGES/balsa.mo
+  /usr/share/locale/he/LC_MESSAGES/balsa.mo
+  /usr/share/locale/hi/LC_MESSAGES/balsa.mo
+  /usr/share/locale/hr/LC_MESSAGES/balsa.mo
+  /usr/share/locale/hu/LC_MESSAGES/balsa.mo
+  /usr/share/locale/id/LC_MESSAGES/balsa.mo
+  /usr/share/locale/it/LC_MESSAGES/balsa.mo
+  /usr/share/locale/ja/LC_MESSAGES/balsa.mo
+  /usr/share/locale/ko/LC_MESSAGES/balsa.mo
+  /usr/share/locale/lt/LC_MESSAGES/balsa.mo
+  /usr/share/locale/lv/LC_MESSAGES/balsa.mo
+  /usr/share/locale/ml/LC_MESSAGES/balsa.mo
+  /usr/share/locale/ms/LC_MESSAGES/balsa.mo
+  /usr/share/locale/nb/LC_MESSAGES/balsa.mo
+  /usr/share/locale/ne/LC_MESSAGES/balsa.mo
+  /usr/share/locale/nl/LC_MESSAGES/balsa.mo
+  /usr/share/locale/nn/LC_MESSAGES/balsa.mo
+  /usr/share/locale/oc/LC_MESSAGES/balsa.mo
+  /usr/share/locale/pa/LC_MESSAGES/balsa.mo
+  /usr/share/locale/pl/LC_MESSAGES/balsa.mo
+  /usr/share/locale/pt/LC_MESSAGES/balsa.mo
+  /usr/share/locale/pt_BR/LC_MESSAGES/balsa.mo
+  /usr/share/locale/ro/LC_MESSAGES/balsa.mo
+  /usr/share/locale/ru/LC_MESSAGES/balsa.mo
+  /usr/share/locale/rw/LC_MESSAGES/balsa.mo
+  /usr/share/locale/sk/LC_MESSAGES/balsa.mo
+  /usr/share/locale/sl/LC_MESSAGES/balsa.mo
+  /usr/share/locale/sq/LC_MESSAGES/balsa.mo
+  /usr/share/locale/sr/LC_MESSAGES/balsa.mo
+  /usr/share/locale/sr@Latn/LC_MESSAGES/balsa.mo
+  /usr/share/locale/sv/LC_MESSAGES/balsa.mo
+  /usr/share/locale/tr/LC_MESSAGES/balsa.mo
+  /usr/share/locale/uk/LC_MESSAGES/balsa.mo
+  /usr/share/locale/vi/LC_MESSAGES/balsa.mo
+  /usr/share/locale/wa/LC_MESSAGES/balsa.mo
+  /usr/share/locale/zh_CN/LC_MESSAGES/balsa.mo
+  /usr/share/locale/zh_HK/LC_MESSAGES/balsa.mo
+  /usr/share/locale/zh_TW/LC_MESSAGES/balsa.mo
+  /usr/share/man/man1/balsa.1.gz
+  /usr/share/omf/balsa/balsa-C.omf
+  /usr/share/pixmaps/gnome-balsa2.png
+  /usr/share/sounds/balsa/newmail.wav
+  /usr/share/sounds/balsa/startup.wav
+
+------------------
+
+Port Notes:
+
+----- version 2.3.16-1 -----
+Initial release for Cygwin.
+
+
+Cygwin port maintained by:
+http://cygwinports.dotsrc.org/

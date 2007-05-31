@@ -1,0 +1,9 @@
+inherit gnome2
+
+DESCRIPTION="GNOME mail client"
+HOMEPAGE="http://balsa.gnome.org/"
+SRC_URI="http://balsa.gnome.org/${P}.tar.bz2"
+
+CYGCONF_ARGS="--with-ldap=/usr --with-gpgme --with-gtkhtml=3 
+	--with-gtkspell --without-libnotify --with-gtksourceview 
+	--with-gtkprint --without-esmtp --with-ssl --with-compface"
