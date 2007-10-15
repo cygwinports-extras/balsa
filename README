@@ -20,6 +20,7 @@ Runtime requirements:
   libbonobo2-2.16.0-1
   libbonoboui2-2.16.0-1
   libcairo2-1.4.6-1
+  libesmtp5-1.0.4-1
   libgetaddrinfo0-1.6.3-2
   libgnome2-2.16.0-1
   libgnomeui2-2.16.1-1

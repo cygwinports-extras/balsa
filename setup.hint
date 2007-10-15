@@ -1,5 +1,5 @@
 category: Gnome Mail
-requires: cygwin GConf2 ORBit2 compface glib2 gmime2 gnome-vfs2 gtk2-x11 gtkhtml38 gtksourceview gtkspell libbonobo2 libbonoboui2 libcairo2 libgetaddrinfo0 libgnome2 libgnomeui2 libgpgme11 libintl8 libopenldap2_3_0 libpcre0 openssl pango
+requires: cygwin GConf2 ORBit2 compface glib2 gmime2 gnome-vfs2 gtk2-x11 gtkhtml38 gtksourceview gtkspell libbonobo2 libbonoboui2 libcairo2 libesmtp5 libgetaddrinfo0 libgnome2 libgnomeui2 libgpgme11 libintl8 libopenldap2_3_0 libpcre0 openssl pango
 sdesc: "GNOME mail client"
 ldesc: "Balsa is an e-mail client for GNOME, highly configurable and
 incorporating all the features you would expect in a robust

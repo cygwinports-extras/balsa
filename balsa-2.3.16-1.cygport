@@ -6,4 +6,4 @@ SRC_URI="http://balsa.gnome.org/${P}.tar.bz2"
 
 CYGCONF_ARGS="--with-ldap=/usr --with-gpgme --with-gtkhtml=3 
 	--with-gtkspell --without-libnotify --with-gtksourceview 
-	--with-gtkprint --without-esmtp --with-ssl --with-compface"
+	--with-gtkprint --with-esmtp --with-ssl --with-compface"
