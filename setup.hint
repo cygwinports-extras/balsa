@@ -1,5 +1,5 @@
 category: Gnome Mail
-requires: compface libcairo2 libesmtp5 libgcc1 libgconf2_4 libgdk_pixbuf2.0_0 libglib2.0_0 libgmime2.4_2 libgnome-keyring0 libgnome2_0 libgnomeui2_0 libgpg-error libgtk2.0_0 libgtkhtml3.14_19 libgtksourceview2.0_0 libgtkspell0 libintl8 libnotify1 libopenldap2_3_0 libpango1.0_0 libsqlite3_0 libunique1.0_0 libxml2 openssl
+requires: libcairo2 libcanberra0 libcanberra-gtk0 libcompface0 libenchant1 libesmtp6 libgconf2_4 libgdk_pixbuf2.0_0 libglib2.0_0 libgmime2.4_2 libgnome-keyring0 libgnome2_0 libgnomeui2_0 libgpgme11 libgtk2.0_0 libgtksourceview2.0_0 libgtkspell0 libintl8 libnotify1 libopenldap2_3_0 libopenssl098 libpango1.0_0 libsqlite3_0 libunique1.0_0 libwebkit1.0_2 libxml2 zlib0
 sdesc: "GNOME mail client"
 ldesc: "Balsa is an e-mail client for GNOME, highly configurable and
 incorporating all the features you would expect in a robust

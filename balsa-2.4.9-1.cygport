@@ -3,20 +3,23 @@ inherit gnome2
 DESCRIPTION="GNOME mail client"
 HOMEPAGE="http://pawsa.fedorapeople.org/balsa/"
 SRC_URI="${HOMEPAGE}/${P}.tar.bz2"
+PATCH_URI="2.4.9-libtool.patch"
 
 CYGCONF_ARGS="
 	--disable-pcre --enable-gregex
 	--enable-threads
+	--with-canberra
+	--with-compface
+	--with-esmtp
 	--with-gpgme
 	--with-gtksourceview=2
-	--with-sqlite
-	--with-rubrica
-	--with-esmtp
-	--with-ssl
 	--with-gtkspell
-	--with-compface
-	--with-unique
+	--with-html-widget=webkit
 	--with-ldap
-	--with-gtkhtml=3
 	--with-libnotify
+	--without-nm
+	--with-rubrica
+	--with-sqlite
+	--with-ssl
+	--with-unique
 "

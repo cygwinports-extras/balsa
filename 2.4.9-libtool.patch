@@ -1,0 +1,11 @@
+--- origsrc/balsa-2.4.9/configure.in	2010-11-18 16:18:23.000000000 -0600
++++ src/balsa-2.4.9/configure.in	2011-02-06 22:21:42.814498700 -0600
+@@ -217,7 +217,7 @@ dnl ####################################
+ dnl 3. Programs: compilers and their options.
+ dnl #####################################################################
+ AC_PROG_CC
+-m4_ifdef([AM_PROG_LIBTOOL],[AM_PROG_LIBTOOL],[AC_PROG_RANLIB])
++AC_PROG_LIBTOOL
+ AC_PROG_LN_S
+ 
+ # pkg-config
