@@ -1,0 +1,213 @@
+--- origsrc/balsa-2.4.10/configure.in	2011-08-22 20:56:19.531928800 -0500
++++ src/balsa-2.4.10/configure.in	2011-08-22 21:28:55.226837300 -0500
+@@ -265,7 +265,7 @@ dnl GNOME libs
+ dnl #####################################################################
+ if test x$with_gnome != xno; then
+    TOOLKIT_CATEGORIES="GNOME;GTK;"
+-   gnome_extras="libgnome-2.0 libgnomeui-2.0 libbonobo-2.0 gconf-2.0"
++   gnome_extras="gconf-2.0"
+    AC_MSG_CHECKING([whether we have gnome-keyring])
+    if $PKG_CONFIG --atleast-version=1.0 gnome-keyring-1; then
+       gnome_extras="$gnome_extras gnome-keyring-1"
+@@ -285,7 +285,7 @@ else
+    TOOLKIT_CATEGORIES="GTK;"
+    gnome_extras=""
+ fi
+-AM_CONDITIONAL([BUILD_WITH_GNOME], [test $with_gnome = "yes"])
++AM_CONDITIONAL([BUILD_WITH_GNOME], [false])
+ AC_SUBST(TOOLKIT_CATEGORIES)
+ 
+ # GMime configuration
+--- origsrc/balsa-2.4.10/src/ab-main.c	2011-06-13 14:32:13.000000000 -0500
++++ src/balsa-2.4.10/src/ab-main.c	2011-08-22 21:17:32.928776100 -0500
+@@ -27,7 +27,7 @@
+ #include <string.h>
+ #include <gdk/gdkkeysyms.h>
+ #include <gtk/gtk.h>
+-#if HAVE_GNOME
++#if 0 //HAVE_GNOME
+ #include <gnome.h>
+ #endif
+ #ifdef GTKHTML_HAVE_GCONF
+@@ -82,7 +82,7 @@ struct ABMainWindow {
+ 
+ static void bab_cleanup(void);
+ 
+-#if HAVE_GNOME
++#if 0 //HAVE_GNOME
+ static gint bab_save_session(GnomeClient * client, gint phase,
+                              GnomeSaveStyle save_style, gint is_shutdown,
+                              GnomeInteractStyle interact_style, gint is_fast,
+@@ -1109,7 +1109,7 @@ information_real(void)
+ int
+ main(int argc, char *argv[])
+ {
+-#if HAVE_GNOME
++#if 0 //HAVE_GNOME
+     GnomeClient *client;
+ #endif
+ 
+@@ -1123,7 +1123,7 @@ main(int argc, char *argv[])
+ 
+     /* FIXME: do we need to allow a non-GUI mode? */
+     gtk_init_check(&argc, &argv);
+-#if HAVE_GNOME
++#if 0 //HAVE_GNOME
+     gnome_program_init(PACKAGE, VERSION, LIBGNOMEUI_MODULE, argc, argv,
+ #ifndef GNOME_PARAM_GOPTION_CONTEXT
+                        GNOME_PARAM_POPT_TABLE, NULL,
+@@ -1172,7 +1172,7 @@ main(int argc, char *argv[])
+                      G_CALLBACK(bab_delete_ok), NULL);
+ 
+     /* session management */
+-#if HAVE_GNOME
++#if 0 //HAVE_GNOME
+     client = gnome_master_client();
+     g_signal_connect(G_OBJECT(client), "save_yourself",
+ 		     G_CALLBACK(bab_save_session), argv[0]);
+@@ -1201,13 +1201,13 @@ main(int argc, char *argv[])
+ static void
+ bab_cleanup(void)
+ {
+-#if (defined(HAVE_GNOME) && !defined(GNOME_DISABLE_DEPRECATED))
++#if 0 //(defined(HAVE_GNOME) && !defined(GNOME_DISABLE_DEPRECATED))
+     gnome_sound_shutdown();
+ #endif
+     gtk_main_quit();
+ }
+ 
+-#if HAVE_GNOME
++#if 0 //HAVE_GNOME
+ static gint
+ bab_kill_session(GnomeClient * client, gpointer client_data)
+ {
+--- origsrc/balsa-2.4.10/src/main-window.c	2011-06-13 14:32:13.000000000 -0500
++++ src/balsa-2.4.10/src/main-window.c	2011-08-22 21:18:25.311684000 -0500
+@@ -69,7 +69,7 @@
+ #include "toolbar-prefs.h"
+ #include "toolbar-factory.h"
+ 
+-#if HAVE_GNOME
++#if 0 //HAVE_GNOME
+ #include <gnome.h> /* for gnome_triggers_do() */
+ #endif
+ 
+@@ -3398,7 +3398,7 @@ bw_display_new_mail_notification(int num
+     if (num_new <= 0 && has_new <= 0)
+         return;
+ 
+-#if HAVE_GNOME
++#if 0 //HAVE_GNOME
+     if (balsa_app.notify_new_mail_sound)
+         gnome_triggers_do("New mail has arrived", "email",
+                           "balsa", "newmail", NULL);
+--- origsrc/balsa-2.4.10/src/main.c	2011-06-13 14:32:13.000000000 -0500
++++ src/balsa-2.4.10/src/main.c	2011-08-22 21:24:55.800382400 -0500
+@@ -29,7 +29,7 @@
+ #include <unique/unique.h>
+ #endif                          /* HAVE_UNIQUE */
+ 
+-#if HAVE_GNOME
++#if 0 //HAVE_GNOME
+ #include <gnome.h>
+ #endif
+ 
+@@ -70,7 +70,7 @@
+ 
+ #include "libinit_balsa/assistant_init.h"
+ 
+-#if !HAVE_UNIQUE && HAVE_GNOME
++#if 0 //!HAVE_UNIQUE && HAVE_GNOME
+ #include "Balsa.h"
+ #include "balsa-bonobo.h"
+ #include <bonobo-activation/bonobo-activation.h>
+@@ -104,7 +104,7 @@ static gboolean balsa_init(int argc, cha
+ static void config_init(gboolean check_only);
+ static void mailboxes_init(gboolean check_only);
+ static void balsa_cleanup(void);
+-#if HAVE_GNOME
++#if 0 // HAVE_GNOME
+ static gint balsa_kill_session(GnomeClient * client, gpointer client_data);
+ static gint balsa_save_session(GnomeClient * client, gint phase,
+ 			       GnomeSaveStyle save_style, gint is_shutdown,
+@@ -441,7 +441,7 @@ balsa_handle_automation_options() {
+ static gboolean
+ balsa_init(int argc, char **argv)
+ {
+-#if (HAVE_GNOME && !defined(GNOME_PARAM_GOPTION_CONTEXT))
++#if 0 //(HAVE_GNOME && !defined(GNOME_PARAM_GOPTION_CONTEXT))
+     static char *attachment = NULL;
+     int opt;
+     poptContext context;
+@@ -525,7 +525,7 @@ balsa_init(int argc, char **argv)
+           "Special option that collects any remaining arguments for us" },
+         { NULL }
+     };
+-#if HAVE_GNOME
++#if 0 //HAVE_GNOME
+     GOptionContext *option_context = g_option_context_new("balsa");
+     GnomeProgram *my_app;
+     g_option_context_add_main_entries(option_context, option_entries, NULL);
+@@ -573,7 +573,7 @@ balsa_init(int argc, char **argv)
+     }
+ #endif /* OPTION HANDLING */
+ 
+-#if !HAVE_UNIQUE && HAVE_GNOME
++#if 0 //!HAVE_UNIQUE && HAVE_GNOME
+     balsa_handle_automation_options();
+ #endif /* HAVE_UNIQUE */
+ 
+@@ -955,7 +955,7 @@ int
+ main(int argc, char *argv[])
+ {
+     GtkWidget *window;
+-#if HAVE_GNOME
++#if 0 //HAVE_GNOME
+     GnomeClient *client;
+ #endif
+     gchar *default_icon;
+@@ -1076,7 +1076,7 @@ main(int argc, char *argv[])
+     }
+ 
+     signal( SIGPIPE, SIG_IGN );
+-#if HAVE_GNOME
++#if 0 //HAVE_GNOME
+     gnome_triggers_do("", "program", "balsa", "startup", NULL);
+ #endif
+ 
+@@ -1114,7 +1114,7 @@ main(int argc, char *argv[])
+     }
+ 
+     /* session management */
+-#if HAVE_GNOME
++#if 0 //HAVE_GNOME
+     client = gnome_master_client();
+     g_signal_connect(G_OBJECT(client), "save_yourself",
+ 		     G_CALLBACK(balsa_save_session), argv[0]);
+@@ -1217,13 +1217,13 @@ balsa_cleanup(void)
+     g_hash_table_destroy(libbalsa_mailbox_view_table);
+     libbalsa_mailbox_view_table = NULL;
+ 
+-#if (defined(HAVE_GNOME) && !defined(GNOME_DISABLE_DEPRECATED))
++#if 0 //(defined(HAVE_GNOME) && !defined(GNOME_DISABLE_DEPRECATED))
+     gnome_sound_shutdown();
+ #endif
+     libbalsa_conf_drop_all();
+ }
+ 
+-#if HAVE_GNOME
++#if 0 //HAVE_GNOME
+ static gint
+ balsa_kill_session(GnomeClient * client, gpointer client_data)
+ {
+--- origsrc/balsa-2.4.10/src/toolbar-prefs.c	2011-06-13 14:32:14.000000000 -0500
++++ src/balsa-2.4.10/src/toolbar-prefs.c	2011-08-22 21:22:06.097976800 -0500
+@@ -42,7 +42,7 @@
+ #define MAX(a, b) ((a) > (b) ? (a) : (b))
+ #endif
+ 
+-#ifdef HAVE_GNOME
++#if 0 //HAVE_GNOME
+ #define OLD_BALSA_COMPATIBILITY_TRANSLATION
+ #endif
+ #ifdef OLD_BALSA_COMPATIBILITY_TRANSLATION
