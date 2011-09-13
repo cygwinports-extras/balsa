@@ -1,0 +1,115 @@
+diff --git a/src/main-window.c b/src/main-window.c
+index d01489f..3be6d7d 100644
+--- a/src/main-window.c
++++ b/src/main-window.c
+@@ -1914,12 +1914,7 @@ balsa_window_new()
+ 
+ #ifdef BALSA_USE_THREADS
+     /* set initial state of Get-New-Mail button */
+-    if (pthread_mutex_trylock(&checking_mail_lock))
+-        bw_set_sensitive(window, "GetNewMail", FALSE);
+-    else {
+-        bw_set_sensitive(window, "GetNewMail", TRUE);
+-        pthread_mutex_unlock(&checking_mail_lock);
+-    }
++    bw_set_sensitive(window, "GetNewMail", !checking_mail);
+ #endif
+ 
+     bw_set_visible(window, "MailboxTabMenu", FALSE);
+@@ -2924,18 +2919,23 @@ check_new_messages_real(BalsaWindow * window, int type)
+ #ifdef BALSA_USE_THREADS
+     struct check_messages_thread_info *info;
+     /*  Only Run once -- If already checking mail, return.  */
+-    if (pthread_mutex_trylock(&checking_mail_lock)) {
++     pthread_mutex_lock(&checking_mail_lock);
++     if (checking_mail) {
++         pthread_mutex_unlock(&checking_mail_lock);
+         fprintf(stderr, "Already Checking Mail!\n");
+ 	if (progress_dialog)
+ 	    gtk_window_present(GTK_WINDOW(progress_dialog));
+         return;
+     }
++    checking_mail = 1;
+     if (window)
+         bw_set_sensitive(window, "GetNewMail", FALSE);
+ 
+     quiet_check = (type == TYPE_CALLBACK) 
+         ? 0 : balsa_app.quiet_background_check;
+ 
++    pthread_mutex_unlock(&checking_mail_lock);
++
+     if (type == TYPE_CALLBACK && 
+         (balsa_app.pwindow_option == WHILERETR ||
+          (balsa_app.pwindow_option == UNTILCLOSED && progress_dialog)))
+@@ -3108,6 +3108,7 @@ bw_check_messages_thread(struct check_messages_thread_info *info)
+     /*  
+      *  It is assumed that this will always be called as a pthread,
+      *  and that the calling procedure will check for an existing lock
++     *  and set checking_mail to true before calling.
+      */
+     MailThreadMessage *threadmessage;
+     GSList *list = info->list;
+@@ -3124,7 +3125,8 @@ bw_check_messages_thread(struct check_messages_thread_info *info)
+     MSGMAILTHREAD(threadmessage, LIBBALSA_NTFY_FINISHED, NULL, "Finished",
+                   0, 0);
+     
+-    pthread_mutex_unlock(&checking_mail_lock);
++    pthread_mutex_lock(&checking_mail_lock);
++    checking_mail = 0;
+ 
+     if (info->window) {
+         gdk_threads_enter();
+@@ -3132,6 +3134,7 @@ bw_check_messages_thread(struct check_messages_thread_info *info)
+         g_object_unref(info->window);
+         gdk_threads_leave();
+     }
++    pthread_mutex_unlock(&checking_mail_lock);
+     
+     g_free(info);
+     pthread_exit(0);
+diff --git a/src/main.c b/src/main.c
+index 76897c4..9f4d53b 100644
+--- a/src/main.c
++++ b/src/main.c
+@@ -89,6 +89,7 @@
+ pthread_t get_mail_thread;
+ pthread_t send_mail;
+ pthread_mutex_t send_messages_lock;
++int checking_mail;
+ int mail_thread_pipes[2];
+ int send_thread_pipes[2];
+ GIOChannel *mail_thread_msg_send;
+@@ -1200,7 +1201,8 @@ balsa_cleanup(void)
+        There are actually many things to do, e.g. threads should not
+        be started after this point.
+     */
+-    if (pthread_mutex_trylock(&checking_mail_lock)) {
++    pthread_mutex_lock(&checking_mail_lock);
++    if(checking_mail) {
+         /* We want to quit but there is a checking thread active.
+            The alternatives are to:
+            a. wait for the checking thread to finish - but it could be
+@@ -1210,8 +1212,8 @@ balsa_cleanup(void)
+         pthread_cancel(get_mail_thread);
+         printf("Mail check thread cancelled. I know it is rough.\n");
+         sleep(1);
+-    } else
+-        pthread_mutex_unlock(&checking_mail_lock);
++    }
++    pthread_mutex_unlock(&checking_mail_lock);
+ #endif
+     balsa_app_destroy();
+     g_hash_table_destroy(libbalsa_mailbox_view_table);
+diff --git a/src/threads.h b/src/threads.h
+index 1f60ac1..0de5c63 100644
+--- a/src/threads.h
++++ b/src/threads.h
+@@ -29,6 +29,7 @@ extern pthread_mutex_t checking_mail_lock;
+ 
+ /*  define thread globals */
+ extern pthread_t get_mail_thread;
++extern int checking_mail;
+ extern int mail_thread_pipes[2];
+ extern GIOChannel *mail_thread_msg_send;
+ extern GIOChannel *mail_thread_msg_receive;
+

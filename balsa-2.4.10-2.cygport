@@ -5,6 +5,7 @@ HOMEPAGE="http://pawsa.fedorapeople.org/balsa/"
 SRC_URI="${HOMEPAGE}/${P}.tar.bz2"
 
 PATCH_URI="2.4.9-libtool.patch
+           2.4.10-fix-mutex.patch
            2.4.10-no-libgnome.patch"
 
 CYGCONF_ARGS="
