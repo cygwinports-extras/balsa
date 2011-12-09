@@ -5,8 +5,9 @@ HOMEPAGE="http://pawsa.fedorapeople.org/balsa/"
 SRC_URI="${HOMEPAGE}/${P}.tar.bz2"
 
 PATCH_URI="2.4.9-libtool.patch
-           2.4.10-fix-mutex.patch
            2.4.10-no-libgnome.patch"
+
+DIFF_EXCLUDES="*.desktop.in"
 
 CYGCONF_ARGS="
 	--disable-pcre --enable-gregex
@@ -14,10 +15,11 @@ CYGCONF_ARGS="
 	--with-canberra
 	--with-compface
 	--with-esmtp
+	--with-gmime=2.4
 	--with-gpgme
-	--with-gtksourceview=2
+	--with-gtksourceview
 	--with-gtkspell
-	--with-html-widget=webkit
+	--with-html-widget=gtkhtml3
 	--with-ldap
 	--with-libnotify
 	--without-nm
