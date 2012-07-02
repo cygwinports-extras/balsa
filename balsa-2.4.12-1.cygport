@@ -15,7 +15,7 @@ CYGCONF_ARGS="
 	--with-canberra
 	--with-compface
 	--with-esmtp
-	--with-gmime=2.4
+	--with-gmime=2.6
 	--with-gpgme
 	--with-gtksourceview
 	--with-gtkspell
