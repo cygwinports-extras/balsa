@@ -1,18 +1,15 @@
 inherit gnome2
 
 NAME="balsa"
-VERSION=2.4.13
+VERSION=2.5.1
 RELEASE=1
-CATEGORY="GNOME Mail"
+CATEGORY="Mail"
 SUMMARY="GNOME mail client"
 DESCRIPTION="Balsa is an e-mail client for GNOME, highly configurable and
-incorporating all the features you would expect in a robust
-mail client."
+incorporating all the features you would expect in a robust mail client."
 HOMEPAGE="http://pawsa.fedorapeople.org/balsa/"
-SRC_URI="${HOMEPAGE}/${P}.tar.bz2"
-
-PATCH_URI="2.4.9-libtool.patch
-           2.4.10-no-libgnome.patch"
+SRC_URI="${HOMEPAGE}/balsa-${VERSION}.tar.bz2"
+PATCH_URI="2.4.9-libtool.patch"
 
 DIFF_EXCLUDES="*.desktop.in"
 
@@ -26,12 +23,11 @@ CYGCONF_ARGS="
 	--with-gpgme
 	--with-gtksourceview
 	--with-gtkspell
-	--with-html-widget=gtkhtml3
+	--with-html-widget=webkit
 	--with-ldap
 	--with-libnotify
 	--without-nm
 	--with-rubrica
 	--with-sqlite
 	--with-ssl
-	--with-unique
 "
