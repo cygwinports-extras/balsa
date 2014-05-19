@@ -2,7 +2,7 @@ inherit gnome2
 
 NAME="balsa"
 VERSION=2.5.1
-RELEASE=1
+RELEASE=2
 CATEGORY="Mail"
 SUMMARY="GNOME mail client"
 DESCRIPTION="Balsa is an e-mail client for GNOME, highly configurable and
@@ -21,11 +21,13 @@ CYGCONF_ARGS="
 	--with-esmtp
 	--with-gmime=2.6
 	--with-gpgme
+	--with-gss
 	--with-gtksourceview
 	--with-gtkspell
 	--with-html-widget=webkit
 	--with-ldap
 	--with-libnotify
+	--with-libsecret
 	--without-nm
 	--with-rubrica
 	--with-sqlite
